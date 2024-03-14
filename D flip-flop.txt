@@ -1,0 +1,54 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity dff is
+	port(D:in bit;
+    	clk:in bit;
+        rst:in bit;
+        Q:out bit);
+end entity;
+
+architecture dff_arch of dff is
+begin
+state_change: process(clk,rst) is
+begin
+	if rst='1' then
+    	Q<='0';
+    elsif clk'event and clk='1' then
+    	Q<=D;
+    end if;
+end process state_change;
+end architecture;
+
+
+--TESTBENCH
+
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity testbench is
+end entity;
+
+architecture testbench_arch of testbench is
+signal D,clk,rst,Q:bit;
+begin
+DUT:entity work.dff
+port map(D=>D,clk=>clk,rst=>rst,Q=>Q);
+clock: process is
+begin
+clk<='1';
+wait for 5ns;
+clk<='0';
+wait for 5ns;
+end process clock;
+
+jedan: process
+begin
+
+D<='0';
+wait for 10ns;
+
+D<='1';
+wait for 10ns;
+end process jedan;
+end architecture;

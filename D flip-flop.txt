@@ -20,6 +20,7 @@ begin
 end process state_change;
 end architecture;
 
+--pokusavam da dodam izmene
 
 --TESTBENCH
 
